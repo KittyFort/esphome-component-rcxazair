@@ -135,12 +135,12 @@ def to_code(config):
         sens = yield sensor.new_sensor(config[CONF_PM_1_0])
         cg.add(var.set_pmc_1_0_sensor(sens))
 
-    if CONF_PMC_2_5 in config:
-        sens = yield sensor.new_sensor(config[CONF_PMC_2_5])
+    if CONF_PM_2_5 in config:
+        sens = yield sensor.new_sensor(config[CONF_PM_2_5])
         cg.add(var.set_pmc_2_5_sensor(sens))
 
-    if CONF_PMC_10_0 in config:
-        sens = yield sensor.new_sensor(config[CONF_PMC_10_0])
+    if CONF_PM_10_0 in config:
+        sens = yield sensor.new_sensor(config[CONF_PM_10_0])
         cg.add(var.set_pmc_10_0_sensor(sens))
         
 
