@@ -22,10 +22,25 @@ from esphome.const import (
 
     CONF_TVOC,
     CONF_FORMALDEHYDE,
-    UNIT_MICROGRAMS_PER_CUBIC_METER,
+    UNIT_MILLIGRAMS_PER_CUBIC_METER,
     ICON_CHEMICAL_WEAPON,
+    ICON_GAS_CYLINDER,
+    ICON_COUNTER,
+    UNIT_COUNTS_PER_CUBIC_METER,
+    UNIT_MICROGRAMS_PER_CUBIC_METER,
+    
+    CONF_PM_1_0,
+    CONF_PM_1_0UM,
+    
+    CONF_PM_2_5.
+    CONF_PM_2_5UM,
+    
+    CONF_PM_10_0,
+    CONF_PM_10_0UM,
+    
 )
 
+ICON_MOLECULE = "mdi:molecule"
 CODEOWNERS = ["@mheistermann"]
 
 rcxazair_ns = cg.esphome_ns.namespace("rcxazair")
@@ -66,6 +81,21 @@ CONFIG_SCHEMA = (
                 icon=ICON_CHEMICAL_WEAPON,
                 accuracy_decimals=0,
             ),
+            cv.Optional(CONF_PM_1_0): sensor.sensor_schema(
+                unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
+                icon=ICON_MOLECULE,
+                accuracy_decimals=0,
+            ),
+            cv.Optional(CONF_PM_2_5): sensor.sensor_schema(
+                unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
+                icon=ICON_MOLECULE,
+                accuracy_decimals=0,
+            ),
+            cv.Optional(CONF_PM_10_0): sensor.sensor_schema(
+                unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
+                icon=ICON_MOLECULE,
+                accuracy_decimals=0,
+            ),
         }
     )
     .extend(ble_client.BLE_CLIENT_SCHEMA)
@@ -100,4 +130,17 @@ def to_code(config):
     if CONF_HUMIDITY in config:
         sens = yield sensor.new_sensor(config[CONF_HUMIDITY])
         cg.add(var.set_relhum_sensor(sens))
+
+    if CONF_PM_1_0 in config:
+        sens = yield sensor.new_sensor(config[CONF_PM_1_0])
+        cg.add(var.set_pmc_1_0_sensor(sens))
+
+    if CONF_PMC_2_5 in config:
+        sens = await sensor.new_sensor(config[CONF_PMC_2_5])
+        cg.add(var.set_pmc_2_5_sensor(sens))
+
+    if CONF_PMC_10_0 in config:
+        sens = await sensor.new_sensor(config[CONF_PMC_10_0])
+        cg.add(var.set_pmc_10_0_sensor(sens))
+        
 
