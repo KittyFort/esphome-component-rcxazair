@@ -32,7 +32,7 @@ from esphome.const import (
     CONF_PM_1_0,
     CONF_PM_1_0UM,
     
-    CONF_PM_2_5.
+    CONF_PM_2_5,
     CONF_PM_2_5UM,
     
     CONF_PM_10_0,
