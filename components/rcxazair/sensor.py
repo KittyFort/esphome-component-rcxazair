@@ -3,6 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import sensor, ble_client
 from esphome.const import (
     CONF_ID,
+    STATE_CLASS_MEASUREMENT,
     #CONF_BATTERY_LEVEL,
     #DEVICE_CLASS_BATTERY,
     #ENTITY_CATEGORY_DIAGNOSTIC,
@@ -30,12 +31,15 @@ from esphome.const import (
     
     CONF_PM_1_0,
     CONF_PM_1_0UM,
+    DEVICE_CLASS_PM1,
     
     CONF_PM_2_5,
     CONF_PM_2_5UM,
+    DEVICE_CLASS_PM25,
     
     CONF_PM_10_0,
     CONF_PM_10_0UM,
+    DEVICE_CLASS_PM10,
     
 )
 
