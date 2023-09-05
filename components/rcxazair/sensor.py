@@ -22,12 +22,11 @@ from esphome.const import (
 
     CONF_TVOC,
     CONF_FORMALDEHYDE,
-    UNIT_MILLIGRAMS_PER_CUBIC_METER,
+    UNIT_MICROGRAMS_PER_CUBIC_METER,
     ICON_CHEMICAL_WEAPON,
     ICON_GAS_CYLINDER,
     ICON_COUNTER,
     UNIT_COUNTS_PER_CUBIC_METER,
-    UNIT_MICROGRAMS_PER_CUBIC_METER,
     
     CONF_PM_1_0,
     CONF_PM_1_0UM,
@@ -60,41 +59,53 @@ CONFIG_SCHEMA = (
                 unit_of_measurement=UNIT_CELSIUS,
                 icon=ICON_THERMOMETER,
                 accuracy_decimals=1,
+                state_class=STATE_CLASS_MEASUREMENT
             ),
             cv.Optional(CONF_HUMIDITY): sensor.sensor_schema(
                 unit_of_measurement=UNIT_PERCENT,
                 icon=ICON_WATER_PERCENT,
                 accuracy_decimals=0,
+                state_class=STATE_CLASS_MEASUREMENT
             ),
             cv.Optional(CONF_CO2): sensor.sensor_schema(
                 unit_of_measurement=UNIT_PARTS_PER_MILLION,
                 icon=ICON_MOLECULE_CO2,
                 accuracy_decimals=0,
+                state_class=STATE_CLASS_MEASUREMENT
             ),
+            #The TVOC and HCHO sensors show measurement in thousandths of a milligram, which is a microgram.
             cv.Optional(CONF_TVOC): sensor.sensor_schema(
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
                 icon=ICON_CHEMICAL_WEAPON,
                 accuracy_decimals=0,
+                state_class=STATE_CLASS_MEASUREMENT
             ),
             cv.Optional(CONF_FORMALDEHYDE): sensor.sensor_schema(
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
                 icon=ICON_CHEMICAL_WEAPON,
                 accuracy_decimals=0,
-            ),
+                state_class=STATE_CLASS_MEASUREMENT
+            ),#HCHO
             cv.Optional(CONF_PM_1_0): sensor.sensor_schema(
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
                 icon=ICON_MOLECULE,
                 accuracy_decimals=0,
+                device_class=DEVICE_CLASS_PM1,
+                state_class=STATE_CLASS_MEASUREMENT
             ),
             cv.Optional(CONF_PM_2_5): sensor.sensor_schema(
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
                 icon=ICON_MOLECULE,
                 accuracy_decimals=0,
+                device_class=DEVICE_CLASS_PM25,
+                state_class=STATE_CLASS_MEASUREMENT
             ),
             cv.Optional(CONF_PM_10_0): sensor.sensor_schema(
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
                 icon=ICON_MOLECULE,
                 accuracy_decimals=0,
+                device_class=DEVICE_CLASS_PM10,
+                state_class=STATE_CLASS_MEASUREMENT,
             ),
         }
     )
