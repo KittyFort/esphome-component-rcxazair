@@ -154,8 +154,6 @@ void Rcxazair::handle_message(uint8_t *msg, uint16_t len)
         ESP_LOGI(TAG, "[%s] Got unknown message data %s",
                 this->parent_->address_str().c_str(),
                 msg);
-				
-    #        ESP_LOGD("main", "on_datapoint_update %s", format_hex_pretty(x).c_str());
             break;
     }
 }
