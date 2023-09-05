@@ -72,22 +72,7 @@ void Rcxazair::gattc_event_handler(
   }
 }
 
-std::string Rcxazair::format_hex_pretty(const uint8_t *data, size_t length)
-{
-  if (length == 0)
-    return "";
-  std::string ret;
-  ret.resize(3 * length - 1);
-  for (size_t i = 0; i < length; i++) {
-    ret[3 * i] = format_hex_pretty_char((data[i] & 0xF0) >> 4);
-    ret[3 * i + 1] = format_hex_pretty_char(data[i] & 0x0F);
-    if (i != length - 1)
-      ret[3 * i + 2] = '.';
-  }
-  if (length > 4)
-    return ret + " (" + to_string(length) + ")";
-  return ret;
-}
+
 void Rcxazair::handle_message(uint8_t *msg, uint16_t len)
 {
     if (len < 4)
@@ -158,6 +143,7 @@ void Rcxazair::handle_message(uint8_t *msg, uint16_t len)
 				ESP_LOGI(TAG, "[%s] Got unknown message data %x",
                 this->parent_->address_str().c_str(),
                 temp);
+			}
 			else{
 				uint32_t temp = u16(4)
 				ESP_LOGI(TAG, "[%s] Got unknown message data %x",

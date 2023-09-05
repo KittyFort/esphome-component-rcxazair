@@ -43,8 +43,6 @@ class Rcxazair : public esphome::ble_client::BLEClientNode
   sensor::Sensor *pmc_1_0_sensor_{nullptr};
   sensor::Sensor *pmc_2_5_sensor_{nullptr};
   sensor::Sensor *pmc_10_0_sensor_{nullptr};
-  /// Format the byte array \p data of length \p len in pretty-printed, human-readable hex.
-  std::string format_hex_pretty(const uint8_t *data, size_t length);
 };
 
 }  // namespace rcxazair
