@@ -153,7 +153,7 @@ void Rcxazair::handle_message(uint8_t *msg, uint16_t len)
                 type);
         ESP_LOGI(TAG, "[%s] Got unknown message data %s",
                 this->parent_->address_str().c_str(),
-                msg);
+                format_hex_pretty(msg).c_str());
             break;
     }
 }
