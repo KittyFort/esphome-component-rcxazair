@@ -151,9 +151,19 @@ void Rcxazair::handle_message(uint8_t *msg, uint16_t len)
         ESP_LOGI(TAG, "[%s] Got unknown message type %x, length: %i",
                 this->parent_->address_str().c_str(),
                 type, len);
-        ESP_LOGI(TAG, "[%s] Got unknown message data %s",
+            if (len < 10)
+                return;
+			if (len < 12){
+				uint16_t temp = u16(4)
+				ESP_LOGI(TAG, "[%s] Got unknown message data %x",
                 this->parent_->address_str().c_str(),
-                format_hex_pretty(msg).c_str());
+                temp);
+			else{
+				uint32_t temp = u16(4)
+				ESP_LOGI(TAG, "[%s] Got unknown message data %x",
+                this->parent_->address_str().c_str(),
+                temp);
+			}
             break;
     }
 }
