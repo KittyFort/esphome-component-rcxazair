@@ -109,7 +109,7 @@ CONFIG_SCHEMA = (
                 icon=ICON_MOLECULE,
                 accuracy_decimals=0,
                 device_class=DEVICE_CLASS_PM10,
-                state_class=STATE_CLASS_MEASUREMENT,
+                state_class=STATE_CLASS_MEASUREMENT
             ),
         }
     )
