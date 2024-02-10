@@ -48,6 +48,9 @@ CODEOWNERS = ["@mheistermann"]
 
 rcxazair_ns = cg.esphome_ns.namespace("rcxazair")
 Rcxazair = rcxazair_ns.class_("Rcxazair", ble_client.BLEClientNode, cg.Component)
+PM1Sensor = sensor.sensor_ns.class_('PM1Sensor', sensor.EmptyPollingParentSensor)
+PM25Sensor = sensor.sensor_ns.class_('PM25Sensor', sensor.EmptyPollingParentSensor)
+PM10Sensor = sensor.sensor_ns.class_('PM10Sensor', sensor.EmptyPollingParentSensor)
 
 CONFIG_SCHEMA = (
     cv.Schema(
@@ -91,6 +94,7 @@ CONFIG_SCHEMA = (
                 state_class=STATE_CLASS_MEASUREMENT
             ),#HCHO
             cv.Optional(CONF_PM_1_0): sensor.sensor_schema(
+                cv.GenerateID(): cv.declare_variable_id(PM1Sensor),
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
                 icon=ICON_MOLECULE,
                 accuracy_decimals=0,
@@ -98,6 +102,7 @@ CONFIG_SCHEMA = (
                 state_class=STATE_CLASS_MEASUREMENT
             ),
             cv.Optional(CONF_PM_2_5): sensor.sensor_schema(
+                cv.GenerateID(): cv.declare_variable_id(PM25Sensor),
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
                 icon=ICON_MOLECULE,
                 accuracy_decimals=0,
@@ -105,6 +110,7 @@ CONFIG_SCHEMA = (
                 state_class=STATE_CLASS_MEASUREMENT
             ),
             cv.Optional(CONF_PM_10_0): sensor.sensor_schema(
+                cv.GenerateID(): cv.declare_variable_id(PM10Sensor),
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
                 icon=ICON_MOLECULE,
                 accuracy_decimals=0,
